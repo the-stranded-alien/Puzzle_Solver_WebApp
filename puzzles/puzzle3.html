@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Coin Change</title>
+</head>
+
+<body>
+    <h1>Minimum Number Of Coins To Dispense Change</h1>
+
+    <p> You Have Coins Of Denomination :- 1, 2, 5, 10, 20 & 50. </p>
+    <p> Predict The Minimum Number Of Coins It Will Take To Dispense Change For The Given Amount !</p>
+
+    <div class="btnNext"> </div>
+    <div class="btnSolve"> </div>
+    <script>
+        let i = 0;
+        function change(val, coins, memo, n) {
+            if (val == 0) return 0;
+            if (memo[val] != -1) return memo[val];
+            let ans = 9999;
+            for (let i = 0; i < n; ++i) {
+                let remVal = val - coins[i];
+                if (remVal >= 0) {
+                    let remChange = change(remVal, coins, memo, n);
+                    ans = Math.min(ans, remChange + 1);
+                }
+            }
+            memo[val] = ans;
+            return ans;
+        }
+        let availableCoins = [1, 2, 5, 10, 20, 50];
+        let memo = [];
+        for (let i = 0; i <= 1000; ++i) {
+            memo[i] = -1;
+        }
+        let n = 6;
+
+        let target = parseInt(window.prompt());
+
+        let btnNext = document.createElement("BUTTON");
+        btnNext.innerHTML = "Next";
+
+        let body = document.getElementsByClassName("btnNext")[0];
+        body.appendChild(btnNext);
+
+        btnNext.addEventListener("click", function () {
+            target = parseInt(window.prompt());
+            window.alert("The Target Value Is : "  + target);
+        });
+
+        let btnSolve = document.createElement("BUTTON");
+        btnSolve.innerHTML = "Solve";
+
+        body = document.getElementsByClassName("btnSolve")[0];
+        body.appendChild(btnSolve);
+
+        btnSolve.addEventListener("click", function () {
+            let ans = change(target, availableCoins, memo, n);
+            window.alert(ans);
+        });
+
+    </script>
+
+
+    <div><a class="btn btn-outline-warning" href="../" role="button"> Back </a></div>
+</body>
+
+</html>

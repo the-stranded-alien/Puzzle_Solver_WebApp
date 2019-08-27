@@ -1,0 +1,87 @@
+.sudoku {
+    display: table;
+    margin: auto;
+    padding: 20px;
+    position: absolute; 
+}
+
+.btn {
+    display: table;
+    margin: auto;
+    padding: 20px;
+}
+
+.btnSolve {
+    display: table;
+    margin: auto;
+    padding: 20px;
+}
+.btnNext {
+    display: table;
+    margin: auto;
+    padding: 20px;
+}
+
+#id {
+    display: table;
+    margin: auto;
+    padding: 20px;
+}
+
+td {
+    align-content: center;
+}
+
+tr:nth-child(even) {
+    background-color: gold;
+}
+
+tr:nth-child(odd) {
+    background-color: yellowgreen;
+}
+
+table, td {
+    box-align: center;
+    border: 3px solid black;
+    width: 500px;
+}
+
+tr {
+    height: 50px;
+}
+
+.one {
+    background-color: aqua;
+}
+
+.two {
+    background-color: aquamarine;
+}
+
+.three {
+    background-color: lightblue;
+}
+
+.four {
+    background-color: yellowgreen;
+}
+
+.five {
+    background-color: yellow;
+}
+
+.six {
+    background-color: lime;
+}
+
+.seven {
+    background-color: orange;
+}
+
+.eight {
+    background-color: red;
+}
+
+.nine {
+    background-color: lightcoral;
+}

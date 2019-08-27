@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Rain Water</title>
+</head>
+
+<body>
+    <h1>How Much Rain-Water Tapped ?</h1>
+    <div class="container">
+        <canvas id="mychart"></canvas>
+    </div>
+    <div class="btn"> </div>
+    <script>
+        function harvesting(height, n) {
+            let left = [];
+            let right = [];
+            for (let i = 0; i < n; i++) {
+                left[i] = 0;
+                right[i] = 0;
+            }
+
+            for (let i = 1; i < n; ++i) {
+                left[i] = Math.max(height[i - 1], left[i - 1]);
+                if (left[i] < height[i]) {
+                    left[i] = 0;
+                }
+            }
+
+            for (let i = n - 2; i >= 0; --i) {
+                right[i] = Math.max(height[i + 1], right[i + 1]);
+                if (right[i] < height[i]) {
+                    right[i] = 0;
+                }
+            }
+
+            let ans = 0;
+            for (let i = 0; i < n; ++i) {
+                let diff = Math.min(left[i], right[i]) - height[i];
+                ans += Math.max(diff, 0);
+            }
+            return ans;
+        }
+
+
+
+        let dataSet = [[6, 2, 3, 4, 5, 9, 3, 5, 6, 8], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]];
+        let i = 0;
+        let myChart = document.getElementById('mychart').getContext('2d');
+
+        Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = '#777';
+
+        let barChart = new Chart(myChart, {
+            type: 'bar',
+            data: {
+                labels: ['Line-1', 'Line-2', 'Line-3', 'Line-4', 'Line-5', 'Line-6', 'Line-7', 'Line-8', 'Line-9', 'Line-10'],
+                datasets: [{
+                    label: 'Number',
+                    data: dataSet[i],
+                    backgroundColor: ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'cyan', 'orange', 'brown', 'grey'],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: '#000'
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        barPercentage: 1.0
+                    }],
+                    yAxes: [{
+                        barPercentage: 1.0
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Ignore The Gaps Between The Bars !!',
+                    fontSize: 25
+                },
+                legend: {
+                    display: false,
+                    position: 'right',
+                    label: {
+                        fontColor: 'black'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 50,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                tooltips: {
+                    // enabled: false
+                }
+            }
+        });
+
+        let btn = document.createElement("BUTTON");
+        btn.innerHTML = "Tell Me !!";
+
+        let body = document.getElementsByClassName("btn")[0];
+        body.appendChild(btn);
+
+        btn.addEventListener("click", function () {
+            let ans = harvesting(dataSet[i], 10);
+            window.alert(ans);
+        });
+
+    </script>
+    <!-- <div><a class="btn btn-outline-primary" href="../" role="button"> Back </a></div> -->
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="algo.css">
+    <title>Sudoku</title>
+</head>
+
+<body>
+
+    <script>
+        let sudokuDataSet = [
+            [[], [], [], [], [], [], [], [], []],
+            [[], [], [], [], [], [], [], [], []],
+            [[], [], [], [], [], [], [], [], []],
+            [[], [], [], [], [], [], [], [], []],
+            [[], [], [], [], [], [], [], [], []]
+        ]
+    </script>
+
+    <h1>Is Sudoku Solvable ?</h1>
+    <div class="sudoku">
+        <table>
+            <tr>
+                <td class="one"> 0,0 </td>
+                <td class="one"> 0,1 </td>
+                <td class="one"> 0,2 </td>
+                <td class="two"> 0,3 </td>
+                <td class="two"> 0,4 </td>
+                <td class="two"> 0,5 </td>
+                <td class="three"> 0,6 </td>
+                <td class="three"> 0,7 </td>
+                <td class="three"> 0,8 </td>
+            </tr>
+            <tr>
+                <td class="one"> 1,0 </td>
+                <td class="one"> 1,1 </td>
+                <td class="one"> 1,2 </td>
+                <td class="two"> 1,3 </td>
+                <td class="two"> 1,4 </td>
+                <td class="two"> 1,5 </td>
+                <td class="three"> 1,6 </td>
+                <td class="three"> 1,7 </td>
+                <td class="three"> 1,8 </td>
+            </tr>
+            <tr>
+                <td class="one"> 2,0 </td>
+                <td class="one"> 2,1 </td>
+                <td class="one"> 2,2 </td>
+                <td class="two"> 2,3 </td>
+                <td class="two"> 2,4 </td>
+                <td class="two"> 2,5 </td>
+                <td class="three"> 2,6 </td>
+                <td class="three"> 2,7 </td>
+                <td class="three"> 2,8 </td>
+            </tr>
+            <tr>
+                <td class="four"> 3,0 </td>
+                <td class="four"> 3,1 </td>
+                <td class="four"> 3,2 </td>
+                <td class="five"> 3,3 </td>
+                <td class="five"> 3,4 </td>
+                <td class="five"> 3,5 </td>
+                <td class="six"> 3,6 </td>
+                <td class="six"> 3,7 </td>
+                <td class="six"> 3,8 </td>
+            </tr>
+            <tr>
+                <td class="four"> 4,0 </td>
+                <td class="four"> 4,1 </td>
+                <td class="four"> 4,2 </td>
+                <td class="five"> 4,3 </td>
+                <td class="five"> 4,4 </td>
+                <td class="five"> 4,5 </td>
+                <td class="six"> 4,6 </td>
+                <td class="six"> 4,7 </td>
+                <td class="six"> 4,8 </td>
+            </tr>
+            <tr>
+                <td class="four"> 5,0 </td>
+                <td class="four"> 5,1 </td>
+                <td class="four"> 5,2 </td>
+                <td class="five"> 5,3 </td>
+                <td class="five"> 5,4 </td>
+                <td class="five"> 5,5 </td>
+                <td class="six"> 5,6 </td>
+                <td class="six"> 5,7 </td>
+                <td class="six"> 5,8 </td>
+            </tr>
+            <tr>
+                <td class="seven"> 6,0 </td>
+                <td class="seven"> 6,1 </td>
+                <td class="seven"> 6,2 </td>
+                <td class="eight"> 6,3 </td>
+                <td class="eight"> 6,4 </td>
+                <td class="eight"> 6,5 </td>
+                <td class="nine"> 6,6 </td>
+                <td class="nine"> 6,7 </td>
+                <td class="nine"> 6,8 </td>
+            </tr>
+            <tr>
+                <td class="seven"> 7,0 </td>
+                <td class="seven"> 7,1 </td>
+                <td class="seven"> 7,2 </td>
+                <td class="eight"> 7,3 </td>
+                <td class="eight"> 7,4 </td>
+                <td class="eight"> 7,5 </td>
+                <td class="nine"> 7,6 </td>
+                <td class="nine"> 7,7 </td>
+                <td class="nine"> 7,8 </td>
+            </tr>
+            <tr>
+                <td class="seven"> 8,0 </td>
+                <td class="seven"> 8,1 </td>
+                <td class="seven"> 8,2 </td>
+                <td class="eight"> 8,3 </td>
+                <td class="eight"> 8,4 </td>
+                <td class="eight"> 8,5 </td>
+                <td class="nine"> 8,6 </td>
+                <td class="nine"> 8,7 </td>
+                <td class="nine"> 8,8 </td>
+            </tr>
+        </table>
+    </div>
+    <!-- <div class="button"><a class="btn btn-outline-success" href="../" role="button"> Back </a></div> -->
+</body>
+
+</html>

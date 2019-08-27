@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="algo.css">
+    <title>Rat-Maze</title>
+</head>
+
+
+<body>
+
+    <h1>Can The Rate Escape The Maze ?</h1>
+
+    <table class="sudoku">
+        <tr>
+            <td>
+                <p id="00"></p>
+            </td>
+            <td>
+                <p id="01"></p>
+            </td>
+            <td>
+                <p id="02"></p>
+            </td>
+            <td>
+                <p id="03"></p>
+            </td>
+            <td>
+                <p id="04"></p>
+            </td>
+            <td>
+                <p id="05"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="10"></p>
+            </td>
+            <td>
+                <p id="11"></p>
+            </td>
+            <td>
+                <p id="12"></p>
+            </td>
+            <td>
+                <p id="13"></p>
+            </td>
+            <td>
+                <p id="14"></p>
+            </td>
+            <td>
+                <p id="15"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="20"></p>
+            </td>
+            <td>
+                <p id="21"></p>
+            </td>
+            <td>
+                <p id="22"></p>
+            </td>
+            <td>
+                <p id="23"></p>
+            </td>
+            <td>
+                <p id="24"></p>
+            </td>
+            <td>
+                <p id="25"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="30"></p>
+            </td>
+            <td>
+                <p id="31"></p>
+            </td>
+            <td>
+                <p id="32"></p>
+            </td>
+            <td>
+                <p id="33"></p>
+            </td>
+            <td>
+                <p id="34"></p>
+            </td>
+            <td>
+                <p id="35"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="40"></p>
+            </td>
+            <td>
+                <p id="41"></p>
+            </td>
+            <td>
+                <p id="42"></p>
+            </td>
+            <td>
+                <p id="43"></p>
+            </td>
+            <td>
+                <p id="44"></p>
+            </td>
+            <td>
+                <p id="45"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="50"></p>
+            </td>
+            <td>
+                <p id="51"></p>
+            </td>
+            <td>
+                <p id="52"></p>
+            </td>
+            <td>
+                <p id="53"></p>
+            </td>
+            <td>
+                <p id="54"></p>
+            </td>
+            <td>
+                <p id="55"></p>
+            </td>
+        </tr>
+    </table>
+    <div class="btn"> </div>
+
+    <script>
+
+        function printMaze(sol) {
+            // document.write(sol);
+            // console.log(sol);
+        }
+
+        function isPlaceable(maze, x, y) {
+            if (x >= 0 && x < 6 && y >= 0 && y < 6 && maze[x][y] == 1) return true;
+            return false;
+        }
+
+        function solveMazeUtility(maze, x, y, sol) {
+            if (x == 5 && y == 5) {
+                sol[x][y] = 1;
+                return true;
+            }
+
+            if (isPlaceable(maze, x, y) == true) {
+                sol[x][y] = 1;
+                if (solveMazeUtility(maze, x + 1, y, sol) == true) return true;
+                if (solveMazeUtility(maze, x, y + 1, sol) == true) return true;
+                sol[x][y] = 0;
+                return false;
+            }
+
+        }
+        let sol = [[0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0]
+        ];
+
+        function solveMaze(maze) {
+            if (solveMazeUtility(maze, 0, 0, sol) == false) {
+                console.log("Solution Doesn't Exist !");
+                return false;
+            }
+            // printMaze(sol);
+            return true;
+        }
+
+        let maze = [[1, 0, 1, 0, 0, 0],
+        [1, 1, 1, 1, 0, 1],
+        [0, 0, 1, 0, 0, 0],
+        [1, 1, 1, 1, 1, 0],
+        [0, 1, 0, 1, 1, 1],
+        [0, 0, 1, 1, 1, 0]
+        ];
+
+        document.getElementById("00").innerHTML = parseInt(maze[0][0]);
+        document.getElementById("01").innerHTML = parseInt(maze[0][1]);
+        document.getElementById("02").innerHTML = parseInt(maze[0][2]);
+        document.getElementById("03").innerHTML = parseInt(maze[0][3]);
+        document.getElementById("04").innerHTML = parseInt(maze[0][4]);
+        document.getElementById("05").innerHTML = parseInt(maze[0][5]);
+        document.getElementById("10").innerHTML = parseInt(maze[1][0]);
+        document.getElementById("11").innerHTML = parseInt(maze[1][1]);
+        document.getElementById("12").innerHTML = parseInt(maze[1][2]);
+        document.getElementById("13").innerHTML = parseInt(maze[1][3]);
+        document.getElementById("14").innerHTML = parseInt(maze[1][4]);
+        document.getElementById("15").innerHTML = parseInt(maze[1][5]);
+        document.getElementById("20").innerHTML = parseInt(maze[2][0]);
+        document.getElementById("21").innerHTML = parseInt(maze[2][1]);
+        document.getElementById("22").innerHTML = parseInt(maze[2][2]);
+        document.getElementById("23").innerHTML = parseInt(maze[2][3]);
+        document.getElementById("24").innerHTML = parseInt(maze[2][4]);
+        document.getElementById("25").innerHTML = parseInt(maze[2][5]);
+        document.getElementById("30").innerHTML = parseInt(maze[3][0]);
+        document.getElementById("31").innerHTML = parseInt(maze[3][1]);
+        document.getElementById("32").innerHTML = parseInt(maze[3][2]);
+        document.getElementById("33").innerHTML = parseInt(maze[3][3]);
+        document.getElementById("34").innerHTML = parseInt(maze[3][4]);
+        document.getElementById("35").innerHTML = parseInt(maze[3][5]);
+        document.getElementById("40").innerHTML = parseInt(maze[4][0]);
+        document.getElementById("41").innerHTML = parseInt(maze[4][1]);
+        document.getElementById("42").innerHTML = parseInt(maze[4][2]);
+        document.getElementById("43").innerHTML = parseInt(maze[4][3]);
+        document.getElementById("44").innerHTML = parseInt(maze[4][4]);
+        document.getElementById("45").innerHTML = parseInt(maze[4][5]);
+        document.getElementById("50").innerHTML = parseInt(maze[5][0]);
+        document.getElementById("51").innerHTML = parseInt(maze[5][1]);
+        document.getElementById("52").innerHTML = parseInt(maze[5][2]);
+        document.getElementById("53").innerHTML = parseInt(maze[5][3]);
+        document.getElementById("54").innerHTML = parseInt(maze[5][4]);
+
+        document.getElementById("55").innerHTML = parseInt(maze[5][5]);
+
+        let btn = document.createElement("BUTTON");
+        btn.innerHTML = "Solve";
+
+        let body = document.getElementsByClassName("btn")[0];
+        body.appendChild(btn);
+
+        btn.addEventListener("click", function () {
+            solveMaze(maze);
+            document.getElementById("00").innerHTML = parseInt(sol[0][0]);
+            document.getElementById("01").innerHTML = parseInt(sol[0][1]);
+            document.getElementById("02").innerHTML = parseInt(sol[0][2]);
+            document.getElementById("03").innerHTML = parseInt(sol[0][3]);
+            document.getElementById("04").innerHTML = parseInt(sol[0][4]);
+            document.getElementById("05").innerHTML = parseInt(sol[0][5]);
+            document.getElementById("10").innerHTML = parseInt(sol[1][0]);
+            document.getElementById("11").innerHTML = parseInt(sol[1][1]);
+            document.getElementById("12").innerHTML = parseInt(sol[1][2]);
+            document.getElementById("13").innerHTML = parseInt(sol[1][3]);
+            document.getElementById("14").innerHTML = parseInt(sol[1][4]);
+            document.getElementById("15").innerHTML = parseInt(sol[1][5]);
+            document.getElementById("20").innerHTML = parseInt(sol[2][0]);
+            document.getElementById("21").innerHTML = parseInt(sol[2][1]);
+            document.getElementById("22").innerHTML = parseInt(sol[2][2]);
+            document.getElementById("23").innerHTML = parseInt(sol[2][3]);
+            document.getElementById("24").innerHTML = parseInt(sol[2][4]);
+            document.getElementById("25").innerHTML = parseInt(sol[2][5]);
+            document.getElementById("30").innerHTML = parseInt(sol[3][0]);
+            document.getElementById("31").innerHTML = parseInt(sol[3][1]);
+            document.getElementById("32").innerHTML = parseInt(sol[3][2]);
+            document.getElementById("33").innerHTML = parseInt(sol[3][3]);
+            document.getElementById("34").innerHTML = parseInt(sol[3][4]);
+            document.getElementById("35").innerHTML = parseInt(sol[3][5]);
+            document.getElementById("40").innerHTML = parseInt(sol[4][0]);
+            document.getElementById("41").innerHTML = parseInt(sol[4][1]);
+            document.getElementById("42").innerHTML = parseInt(sol[4][2]);
+            document.getElementById("43").innerHTML = parseInt(sol[4][3]);
+            document.getElementById("44").innerHTML = parseInt(sol[4][4]);
+            document.getElementById("45").innerHTML = parseInt(sol[4][5]);
+            document.getElementById("50").innerHTML = parseInt(sol[5][0]);
+            document.getElementById("51").innerHTML = parseInt(sol[5][1]);
+            document.getElementById("52").innerHTML = parseInt(sol[5][2]);
+            document.getElementById("53").innerHTML = parseInt(sol[5][3]);
+            document.getElementById("54").innerHTML = parseInt(sol[5][4]);
+            document.getElementById("55").innerHTML = parseInt(sol[5][5]);
+        });
+
+    </script>
+
+    <!-- <div class="button"><a class="btn btn-outline-success" href="../" role="button"> Back </a></div> -->
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>KnapSack</title>
+</head>
+
+<script>
+
+</script>
+
+<body>
+    <h1>What's The Maximum Profit We Can Earn ?</h1>
+
+    <div class="btn"></div>
+    <script>
+        function knapsack(W, wt, val, n) {
+            let k = [];
+            for (let i = 0; i < W; i++) k[i] = [];
+
+            for (let i = 0; i <= n; i++) {
+                for (let w = 0; w <= W; w++) {
+                    for (let w = 0; w <= W; w++) if (i == 0 || w == 0) k[i][w] = 0;
+                    else if (wt[i - 1] <= w) k[i][w] = Math.max(val[i - 1] + k[i - 1][w - wt[i - 1]], k[i - 1][w]);
+                    else k[i][w] = k[i - 1][w];
+                }
+            }
+            return k[n][W];
+        }
+
+        let n = 3;
+        let val = [100, 50, 150, 75, 40, 120];
+        let wt = [20, 10, 30, 15, 5, 25];
+        // let W = 50;
+
+
+        window.alert("The (Val,Wt) Pairs We Have Are : (100,20), (50,10), (150,30), (75, 15), (40, 5), (120,25) & Enter Bag Capacity After Pressing Find.");
+
+        let btn = document.createElement("BUTTON");
+        btn.innerHTML = "Find !";
+
+        let body = document.getElementsByClassName("btn")[0];
+        body.appendChild(btn);
+
+        btn.addEventListener("click", function () {
+            let W = parseInt(window.prompt());
+            let result = knapsack(W, wt, val, n);
+            window.alert("Max Profit : " + result);
+        });
+
+    </script>
+    <div><a class="btn btn-outline-danger href=" ../" role="button"> Back </a></div>
+</body>
+
+</html>
